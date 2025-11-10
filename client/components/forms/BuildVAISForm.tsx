@@ -548,29 +548,49 @@ export default function BuildVAISForm() {
             {/* Step Progress Indicator */}
             <div className="space-y-6">
               {/* Desktop: Horizontal layout with connecting lines */}
-              <div className="hidden lg:flex items-center justify-between">
-                {steps.map((step, index) => {
-                  const isActive = currentStep === step.id;
-                  const isCompleted =
-                    step.id === 1
-                      ? validationState.step1
-                      : step.id === 2
-                        ? validationState.step2
-                        : validationState.step3;
-                  const isPending = !isCompleted && !isActive;
+              <div className="hidden lg:flex items-center justify-between relative">
+                {/* Connection Lines Background */}
+                <div className="absolute top-6 left-0 right-0 h-1 bg-gray-300 -z-10">
+                  {/* Left connection line (Step 1 to 2) */}
+                  <div
+                    className={cn(
+                      "absolute h-full",
+                      validationState.step1 ? "bg-green-500" : "bg-gray-300",
+                    )}
+                    style={{
+                      left: "calc(6% + 24px)",
+                      right: "calc(50% + 24px)",
+                    }}
+                  />
+                  {/* Right connection line (Step 2 to 3) */}
+                  <div
+                    className={cn(
+                      "absolute h-full",
+                      validationState.step2 ? "bg-green-500" : "bg-gray-300",
+                    )}
+                    style={{
+                      left: "calc(50% + 24px)",
+                      right: "calc(6% + 24px)",
+                    }}
+                  />
+                </div>
 
-                  return (
-                    <div key={step.id} className="flex items-center flex-1">
-                      {/* Step Circle */}
-                      <div className="flex flex-col items-center relative z-10">
+                {/* Step 1 - Left */}
+                <div className="flex flex-col items-center relative z-10">
+                  {(() => {
+                    const step = steps[0];
+                    const isActive = currentStep === step.id;
+                    const isCompleted = validationState.step1;
+                    return (
+                      <>
                         <div
                           className={cn(
-                            "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base",
+                            "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base bg-white",
                             isActive
-                              ? "border-valasys-orange bg-valasys-orange text-white shadow-md"
+                              ? "border-valasys-orange text-valasys-orange"
                               : isCompleted
                                 ? "border-green-500 bg-green-500 text-white"
-                                : "border-gray-300 bg-white text-gray-400",
+                                : "border-gray-300 text-gray-400",
                           )}
                         >
                           {isCompleted && !isActive ? (
@@ -581,7 +601,7 @@ export default function BuildVAISForm() {
                         </div>
                         <span
                           className={cn(
-                            "mt-3 text-xs font-medium whitespace-nowrap text-center px-2",
+                            "mt-3 text-xs font-medium text-center",
                             isActive
                               ? "text-valasys-orange font-semibold"
                               : isCompleted
@@ -591,22 +611,92 @@ export default function BuildVAISForm() {
                         >
                           {step.name}
                         </span>
-                      </div>
+                      </>
+                    );
+                  })()}
+                </div>
 
-                      {/* Connection Line */}
-                      {index < steps.length - 1 && (
-                        <div className="flex-1 h-1 mx-3 relative -mt-8">
-                          <div
-                            className={cn(
-                              "absolute top-1/2 w-full h-1 rounded transition-all",
-                              isCompleted ? "bg-green-500" : "bg-gray-300",
-                            )}
-                          />
+                {/* Step 2 - Center */}
+                <div className="flex flex-col items-center relative z-10">
+                  {(() => {
+                    const step = steps[1];
+                    const isActive = currentStep === step.id;
+                    const isCompleted = validationState.step2;
+                    return (
+                      <>
+                        <div
+                          className={cn(
+                            "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base bg-white",
+                            isActive
+                              ? "border-valasys-orange text-valasys-orange"
+                              : isCompleted
+                                ? "border-green-500 bg-green-500 text-white"
+                                : "border-gray-300 text-gray-400",
+                          )}
+                        >
+                          {isCompleted && !isActive ? (
+                            <Check className="w-6 h-6" />
+                          ) : (
+                            <span>{step.id}</span>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
+                        <span
+                          className={cn(
+                            "mt-3 text-xs font-medium text-center",
+                            isActive
+                              ? "text-valasys-orange font-semibold"
+                              : isCompleted
+                                ? "text-green-600"
+                                : "text-gray-500",
+                          )}
+                        >
+                          {step.name}
+                        </span>
+                      </>
+                    );
+                  })()}
+                </div>
+
+                {/* Step 3 - Right */}
+                <div className="flex flex-col items-center relative z-10">
+                  {(() => {
+                    const step = steps[2];
+                    const isActive = currentStep === step.id;
+                    const isCompleted = validationState.step3;
+                    return (
+                      <>
+                        <div
+                          className={cn(
+                            "flex items-center justify-center w-12 h-12 rounded-full border-3 transition-all font-semibold text-base bg-white",
+                            isActive
+                              ? "border-valasys-orange text-valasys-orange"
+                              : isCompleted
+                                ? "border-green-500 bg-green-500 text-white"
+                                : "border-gray-300 text-gray-400",
+                          )}
+                        >
+                          {isCompleted && !isActive ? (
+                            <Check className="w-6 h-6" />
+                          ) : (
+                            <span>{step.id}</span>
+                          )}
+                        </div>
+                        <span
+                          className={cn(
+                            "mt-3 text-xs font-medium text-center",
+                            isActive
+                              ? "text-valasys-orange font-semibold"
+                              : isCompleted
+                                ? "text-green-600"
+                                : "text-gray-500",
+                          )}
+                        >
+                          {step.name}
+                        </span>
+                      </>
+                    );
+                  })()}
+                </div>
               </div>
 
               {/* Mobile: Vertical/Stacked layout */}
