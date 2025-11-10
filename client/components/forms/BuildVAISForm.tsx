@@ -547,7 +547,12 @@ export default function BuildVAISForm() {
               <div className="hidden lg:flex items-center justify-between">
                 {steps.map((step, index) => {
                   const isActive = currentStep === step.id;
-                  const isCompleted = isStepValid(step.id);
+                  const isCompleted =
+                    step.id === 1
+                      ? validationState.step1
+                      : step.id === 2
+                        ? validationState.step2
+                        : validationState.step3;
                   const isPending = !isCompleted && !isActive;
 
                   return (
