@@ -21,6 +21,7 @@ import FindProspect from "./pages/FindProspect";
 import ProspectResults from "./pages/ProspectResults";
 import FavoritesProspects from "./pages/FavoritesProspects";
 import WishlistProspects from "./pages/WishlistProspects";
+import WishlistProspectDetails from "./pages/WishlistProspectDetails";
 import BuildCampaign from "./pages/BuildCampaign";
 import BuildMyCampaign from "./pages/BuildMyCampaign";
 import CampaignOverview from "./pages/CampaignOverview";
@@ -84,6 +85,10 @@ const App = () => (
                 <Route
                   path="/wishlist-prospects"
                   element={<WishlistProspects />}
+                />
+                <Route
+                  path="/wishlist-prospects/:listId"
+                  element={<WishlistProspectDetails />}
                 />
                 <Route path="/build-campaign" element={<BuildCampaign />} />
                 <Route
