@@ -36,8 +36,7 @@ export default function CreateAccount() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreementModalOpen, setAgreementModalOpen] = useState(false);
-  const [agreementAcknowledged, setAgreementAcknowledged] = useState(false);
-  const [termsChecked, setTermsChecked] = useState(false);
+  const [agreementConfirmed, setAgreementConfirmed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,12 +46,8 @@ export default function CreateAccount() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!agreementAcknowledged) {
+    if (!agreementConfirmed) {
       setAgreementModalOpen(true);
-      return;
-    }
-
-    if (!termsChecked) {
       return;
     }
 
@@ -66,8 +61,8 @@ export default function CreateAccount() {
     navigate("/email-verification", { state: { email } });
   };
 
-  const handleAgreementAcknowledge = () => {
-    setAgreementAcknowledged(true);
+  const handleAgreementConfirm = () => {
+    setAgreementConfirmed(true);
   };
 
   const aiElements = [
