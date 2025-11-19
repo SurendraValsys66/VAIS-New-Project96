@@ -781,29 +781,31 @@ export default function Login() {
 
           {/* Bottom Section - Partnerships & Trust */}
           <div
-            className={`space-y-4 mt-8 pt-6 border-t border-white/20 transform transition-all duration-700 ease-out ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+            className={`mt-6 pt-5 border-t border-white/20 transform transition-all duration-700 ease-out ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
             style={{ transitionDelay: "300ms" }}
           >
-            {/* Partners Section */}
-            <div className="space-y-3">
+            {/* Compact Partners Section */}
+            <div className="space-y-2">
               <div className="flex items-center space-x-2">
-                <Sparkles className="h-4 w-4 text-valasys-orange" />
-                <p className="text-xs font-semibold text-valasys-gray-900 uppercase tracking-wide">
-                  Trusted By Industry Leaders
+                <Sparkles className="h-3.5 w-3.5 text-valasys-orange" />
+                <p className="text-xs font-semibold text-valasys-gray-900 uppercase tracking-widest">
+                  Trusted Partners
                 </p>
               </div>
-              <AssociationPartners />
+              <div className="scale-85 origin-top-left">
+                <AssociationPartners />
+              </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="flex items-center gap-6 pt-2">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-valasys-green flex-shrink-0" />
-                <span className="text-xs text-valasys-gray-700 font-medium">SOC 2 Compliant</span>
+            {/* Trust Badges - Inline */}
+            <div className="flex items-center gap-5 pt-3 text-xs">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="h-3.5 w-3.5 text-valasys-green flex-shrink-0" />
+                <span className="text-valasys-gray-700 font-medium">SOC 2</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-valasys-blue flex-shrink-0" />
-                <span className="text-xs text-valasys-gray-700 font-medium">GDPR Ready</span>
+              <div className="flex items-center gap-1.5">
+                <Shield className="h-3.5 w-3.5 text-valasys-blue flex-shrink-0" />
+                <span className="text-valasys-gray-700 font-medium">GDPR</span>
               </div>
             </div>
           </div>
