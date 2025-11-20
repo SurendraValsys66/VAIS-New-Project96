@@ -43,6 +43,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { DateRangePicker as RsuiteDateRangePicker } from "rsuite";
+import { Switch } from "@/components/ui/switch";
 
 interface PaymentRow {
   id: string;
