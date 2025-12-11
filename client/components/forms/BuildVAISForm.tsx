@@ -369,6 +369,7 @@ export default function BuildVAISForm() {
   ]);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [newSearchName, setNewSearchName] = useState("");
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const filteredTopics = intentTopics.filter(
