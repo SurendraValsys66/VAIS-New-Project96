@@ -212,7 +212,7 @@ export default function Templates() {
                   <Label htmlFor="template-body">Email Body</Label>
                   <Textarea
                     id="template-body"
-                    placeholder="Write your email template here. Use {{variableName}} for dynamic content."
+                    placeholder="Write your email template here. Use [variableName] for dynamic content."
                     value={newTemplate.body}
                     onChange={(e) =>
                       setNewTemplate({ ...newTemplate, body: e.target.value })
