@@ -18,8 +18,13 @@ import {
   SpacerBlock,
 } from "./types";
 
+let idCounter = 0;
 export function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const timestamp = Date.now();
+  const counter = (idCounter++) % 10000;
+  const random = Math.random().toString(36).substring(2, 15) +
+                 Math.random().toString(36).substring(2, 15);
+  return `${timestamp}-${counter}-${random}`;
 }
 
 export function createTitleBlock(content = "Click to edit title"): TitleBlock {
