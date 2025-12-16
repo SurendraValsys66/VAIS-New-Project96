@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { EmailTemplate, ContentBlock } from "./types";
 import { BlocksPanel } from "./BlocksPanel";
@@ -33,6 +35,7 @@ import {
   Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { EmailCanvas } from "./EmailCanvas";
 
 interface EmailBuilderProps {
   templateId?: string;
