@@ -130,7 +130,14 @@ export function createLogoBlock(src = ""): LogoBlock {
     alt: "Logo",
     width: 150,
     height: 60,
+    widthUnit: "px",
     alignment: "center",
+    padding: 0,
+    margin: 0,
+    borderWidth: 0,
+    borderColor: "#000000",
+    borderRadius: 0,
+    visibility: "all",
   };
 }
 
