@@ -202,10 +202,49 @@ const SectionsPanel: React.FC<SectionsPanelProps> = ({ onAddBlock }) => {
     },
   ];
 
+  const contentTemplates: Template[] = [
+    {
+      id: "two-column-cards",
+      title: "Two Column Cards",
+      description: "Two side-by-side dark cards with titles and descriptions",
+      preview:
+        "https://images.unsplash.com/photo-1460925895917-aeb19be489c7?w=400&h=200&fit=crop",
+      blocks: () => [createTwoColumnCardBlock()],
+    },
+    {
+      id: "promo-section",
+      title: "Promo Code Section",
+      description: "Highlight a promotional code or offer",
+      preview:
+        "https://images.unsplash.com/photo-1563207153-f403bf289096?w=400&h=200&fit=crop",
+      blocks: () => [createPromoBlock()],
+    },
+    {
+      id: "stats-section",
+      title: "Statistics Section",
+      description: "Display key metrics or numbers in three columns",
+      preview:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
+      blocks: () => [createStatsBlock()],
+    },
+    {
+      id: "features-section",
+      title: "Features Section",
+      description: "Showcase features or benefits with icons and titles",
+      preview:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop",
+      blocks: () => [createFeaturesBlock()],
+    },
+  ];
+
   const sections: Section[] = [
     {
       title: "Text & images",
       templates: textImageTemplates,
+    },
+    {
+      title: "Content sections",
+      templates: contentTemplates,
     },
     {
       title: "Text",
