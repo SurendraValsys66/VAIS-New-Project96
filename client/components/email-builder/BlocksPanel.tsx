@@ -299,6 +299,8 @@ const SectionsPanel: React.FC<SectionsPanelProps> = ({ onAddBlock }) => {
             "data:image/svg+xml,%3Csvg width='400' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='400' height='200' fill='%23ffffff'/%3E%3Crect x='0' y='0' width='400' height='1' fill='%23e0e0e0'/%3E%3Ctext x='20' y='40' font-size='12' font-weight='bold' fill='%23000'%3EEnterprise name%3C/text%3E%3Ctext x='20' y='60' font-size='11' fill='%23666'%3E69 Street Name, 00000, City%3C/text%3E%3Ctext x='300' y='40' font-size='11' fill='%23666' text-anchor='end'%3EPrivacy | Terms | Policy%3C/text%3E%3Ctext x='300' y='60' font-size='11' fill='%23666' text-anchor='end'%3Econtact@enterprise.com%3C/text%3E%3Ctext x='300' y='80' font-size='11' fill='%23666' text-anchor='end'%3E+33 901 23 04 67%3C/text%3E%3C/svg%3E",
           blocks: () => createFooterWithContactTemplate(),
         },
+      ],
+      blocks: [
         {
           id: "social",
           icon: <Share2 className="w-6 h-6 text-valasys-orange" />,
