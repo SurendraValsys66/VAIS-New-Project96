@@ -33,9 +33,11 @@ import {
   Trash2,
   Plus,
   ChevronLeft,
+  Code,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EmailCanvas } from "./EmailCanvas";
+import { SourceCodeView } from "./SourceCodeView";
 
 interface EmailBuilderProps {
   templateId?: string;
@@ -61,6 +63,7 @@ export const EmailBuilder: React.FC<EmailBuilderProps> = ({
     string | null
   >(null);
   const [previewMode, setPreviewMode] = useState(false);
+  const [showSourceCode, setShowSourceCode] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [templateName, setTemplateName] = useState(template.name);
   const [templateSubject, setTemplateSubject] = useState(template.subject);
@@ -238,7 +241,22 @@ export const EmailBuilder: React.FC<EmailBuilderProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setPreviewMode(!previewMode)}
+                onClick={() => {
+                  setPreviewMode(false);
+                  setShowSourceCode(!showSourceCode);
+                }}
+                className={showSourceCode ? "bg-valasys-orange text-white" : ""}
+              >
+                <Code className="w-4 h-4 mr-1" />
+                {showSourceCode ? "Edit" : "View Source"}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setShowSourceCode(false);
+                  setPreviewMode(!previewMode);
+                }}
                 className={previewMode ? "bg-valasys-orange text-white" : ""}
               >
                 <Eye className="w-4 h-4 mr-1" />
@@ -256,7 +274,11 @@ export const EmailBuilder: React.FC<EmailBuilderProps> = ({
 
           {/* Main Content */}
           <div className="flex-1 flex overflow-hidden">
-            {previewMode ? (
+            {showSourceCode ? (
+              <div className="flex-1">
+                <SourceCodeView template={template} />
+              </div>
+            ) : previewMode ? (
               <div className="flex-1">
                 <EmailPreview template={template} />
               </div>

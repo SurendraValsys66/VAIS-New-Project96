@@ -20,6 +20,7 @@ import {
   CenteredImageCardBlock,
   SplitImageCardBlock,
 } from "./types";
+import { compileHTML, sanitizeHTML } from "./htmlCompiler";
 
 export function generateId(): string {
   // Use crypto.randomUUID if available, fallback to timestamp + random
@@ -826,8 +827,12 @@ export function renderBlockToHTML(block: ContentBlock): string {
 
       return `<div style="display: flex; justify-content: ${justifyClass}; align-items: center; width: ${width}; padding: ${socialBlock.padding}px; margin: ${socialBlock.margin}px auto; gap: 0;">${iconsHtml}</div>`;
     }
-    case "html":
-      return `<div style="width: ${block.width}${block.widthUnit}; padding: ${block.padding}px; margin: ${block.margin}px;">${block.content}</div>`;
+    case "html": {
+      const htmlBlock = block as HtmlBlock;
+      const sanitized = sanitizeHTML(htmlBlock.content);
+      const compiled = compileHTML(sanitized);
+      return `<div style="width: ${htmlBlock.width}${htmlBlock.widthUnit}; padding: ${htmlBlock.padding}px; margin: ${htmlBlock.margin}px;">${compiled}</div>`;
+    }
     case "divider":
       return `<hr style="border: none; border-top: ${block.height}px solid ${block.color}; margin: ${block.margin}px 0;" />`;
     case "product":

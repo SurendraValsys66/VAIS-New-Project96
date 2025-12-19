@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { HtmlBlock } from "../types";
+import { compileHTML, sanitizeHTML } from "../htmlCompiler";
 
 interface HtmlBlockComponentProps {
   block: HtmlBlock;
@@ -13,6 +14,21 @@ export const HtmlBlockComponent: React.FC<HtmlBlockComponentProps> = ({
   onContentChange,
 }) => {
   const width = `${block.width}${block.widthUnit}`;
+
+  // Compile HTML with semantic tag handling and sanitize for security
+  const compiledHTML = useMemo(() => {
+    if (!block.content) {
+      return "<div style='color: #999; font-size: 0.875rem;'>Add your HTML here</div>";
+    }
+
+    // Sanitize the HTML first (remove scripts, event handlers, etc.)
+    const sanitized = sanitizeHTML(block.content);
+
+    // Compile the HTML to handle semantic tags with proper styling
+    const compiled = compileHTML(sanitized);
+
+    return compiled;
+  }, [block.content]);
 
   return (
     <div
@@ -30,7 +46,7 @@ export const HtmlBlockComponent: React.FC<HtmlBlockComponentProps> = ({
           width: width,
         }}
         dangerouslySetInnerHTML={{
-          __html: block.content || "<div>Add your HTML here</div>",
+          __html: compiledHTML,
         }}
       />
     </div>
